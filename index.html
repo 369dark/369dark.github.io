@@ -1,3 +1,51 @@
-<h1> oi esse é o meu site
-<h4> esse site é legal
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Primeiro Site</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+      background: linear-gradient(270deg, #000428, #004e92, #000428);
+      background-size: 600% 600%;
+      animation: mover 20s ease infinite;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    @keyframes mover {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2em;
+      max-width: 600px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <h1>Olá, mundo!</h1>
+  <p>
+    Esse é meu primeiro site com HTML. Eu estudo Termux, Python, Java e HTML.
+    Meu nome é Lucas, estudo inglês e meu sonho é ser desenvolvedor de software.
+  </p>
+</body>
+</html>
 
