@@ -1,50 +1,74 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meu Primeiro Site</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meu Primeiro Site</title>
+<style>
     body {
-      height: 100vh;
-      font-family: Arial, sans-serif;
-      color: white;
-      text-align: center;
-      background: linear-gradient(270deg, #000428, #004e92, #000428);
-      background-size: 600% 600%;
-      animation: mover 20s ease infinite;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
+        margin: 0;
+        padding: 0;
+        font-family: monospace;
+        color: #00ff00;
+        background: black;
+        background-image: 
+            linear-gradient(rgba(0,255,0,0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0,255,0,0.1) 1px, transparent 1px);
+        background-size: 20px 20px;
     }
-
-    @keyframes mover {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
     }
-
     h1 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
+        text-align: center;
+        color: #00ff00;
     }
-
-    p {
-      font-size: 1.2em;
-      max-width: 600px;
-      line-height: 1.5;
+    h2 {
+        color: red;
     }
-  </style>
+    .comandos {
+        background: rgba(0,0,0,0.7);
+        padding: 15px;
+        border: 1px solid #00ff00;
+        margin-top: 20px;
+    }
+    code {
+        color: #0ff;
+        display: block;
+        margin-bottom: 10px;
+    }
+</style>
 </head>
 <body>
-  <h1>Olá, mundo!</h1>
-  <p>
-    Esse é o meu primeiro no github nunca imaginei q estaria criando um site com github, eu usei uns comandos básicos html e javascript, meu nome é lucas e eu estudo inglês quero ser fluente em inglês morar em Washington, meu sonho é ser desenvolvedor de software e hacker ético pra derrubar crackers com sqlmap eu estudo termux python javascript e html e esse é o meu primeiro site tenho fé que vou conseguir tchau gente 
-  </p>
+    <div class="container">
+        <h1>Olá Mundo!</h1>
+        <p>
+            Meu nome é Lucas e tenho 12 anos.  
+            Estudo <b>HTML, Python, Termux e JavaScript</b>.  
+            Nunca imaginei que criaria um site no GitHub, esse é o meu primeiro site!  
+            Meu sonho é ser <b>desenvolvedor de software e hacker ético</b>.
+        </p>
+        <h2>Fire Ex - Grupo Hacker (não cracker)</h2>
+
+        <div class="comandos">
+            <h3>Comandos Termux:</h3>
+            <code>pkg update && pkg upgrade</code> Atualiza todos os pacotes<br>
+            <code>pkg install python</code> Instala o Python<br>
+            <code>ls</code> Lista arquivos e pastas<br>
+            <code>cd nome_da_pasta</code> Entra em uma pasta<br>
+            <code>python arquivo.py</code> Roda um script Python
+        </div>
+
+        <div class="comandos">
+            <h3>Comandos Python:</h3>
+            <code>print("Olá mundo")</code> Mostra uma mensagem na tela<br>
+            <code>for i in range(5): print(i)</code> Conta de 0 até 4<br>
+            <code>nome = input("Qual seu nome? ")</code> Pede seu nome no terminal<br>
+            <code>if 5 > 2: print("5 é maior que 2")</code> Condição simples<br>
+        </div>
+    </div>
 </body>
 </html>
 
