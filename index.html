@@ -5,16 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Site Hacker do Lucas</title>
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
     body {
         margin: 0;
         padding: 0;
-        font-family: monospace;
+        font-family: 'Share Tech Mono', monospace;
         background: black;
         color: #00ff00;
-        overflow-y: auto; /* permite rolar */
+        overflow-y: auto;
         overflow-x: hidden;
+        scroll-behavior: smooth;
     }
-
     canvas {
         position: fixed;
         top: 0;
@@ -23,7 +25,6 @@
         height: 100%;
         z-index: -1;
     }
-
     .container {
         max-width: 950px;
         margin: 0 auto;
@@ -32,33 +33,33 @@
         z-index: 1;
         display: none;
     }
-
     h1 {
         text-align: center;
-        font-size: 2em;
-        color: red; /* Fire Ex em vermelho */
+        font-size: 2.5em;
+        color: red;
+        text-shadow: 0 0 10px #ff0000, 0 0 20px #ff4444;
+        animation: neon 1.5s infinite alternate;
     }
-
-    h2 {
-        color: yellow;
+    @keyframes neon {
+        from { text-shadow: 0 0 10px #ff0000, 0 0 20px #ff4444; }
+        to { text-shadow: 0 0 20px #ff2222, 0 0 40px #ff6666; }
     }
-
+    h2 { color: yellow; }
     h3 { color: #ffcc00; }
-
     .comandos {
         background: rgba(0,0,0,0.7);
         padding: 15px;
         border: 1px solid #00ff00;
         margin-top: 20px;
+        box-shadow: 0 0 15px #00ff00;
+        border-radius: 10px;
     }
-
     code {
         color: #33ccff;
         display: block;
         margin-bottom: 8px;
         white-space: pre-wrap;
     }
-
     #textoDigitado {
         border-right: 2px solid #00ff00;
         white-space: pre-wrap;
@@ -66,14 +67,11 @@
         font-size: 1.2em;
         color: #00ff00;
     }
-
     #textoCompleto {
         margin-top: 15px;
         color: #00ff88;
         font-size: 1em;
     }
-
-    /* Botão */
     #ativarBtn {
         position: fixed;
         top: 50%;
@@ -86,9 +84,12 @@
         border: 2px solid #00ff00;
         cursor: pointer;
         z-index: 2;
+        transition: 0.3s;
+        box-shadow: 0 0 15px #00ff00;
     }
     #ativarBtn:hover {
         background: #003300;
+        box-shadow: 0 0 25px #00ff00;
     }
 </style>
 </head>
@@ -108,22 +109,15 @@
     <div class="comandos">
         <h3>Comandos Termux:</h3>
         <code>pkg update && pkg upgrade</code>
-        <code>pkg install python</code>
-        <code>pkg install git</code>
-        <code>pkg install nmap</code>
-        <code>pkg install nano</code>
-        <code>pkg install curl</code>
-        <code>pkg install nodejs</code>
-        <code>pkg install openjdk-17</code>
-        <code>pkg install clang</code>
-        <code>pkg install php</code>
-        <code>pkg install sqlmap</code>
+        <code>pkg install python git nmap nano curl nodejs openjdk-17 clang php sqlmap</code>
         <code>ls</code>
         <code>cd nome_da_pasta</code>
         <code>mkdir projetos</code>
         <code>git clone URL</code>
         <code>python script.py</code>
         <code>bash arquivo.sh</code>
+        <code>ssh usuario@ip</code>
+        <code>ping 8.8.8.8</code>
     </div>
 
     <!-- Python -->
@@ -135,6 +129,41 @@
         <code>def soma(a,b): return a+b</code>
         <code>import os; os.system('ls')</code>
         <code>import requests; print(requests.get('https://example.com').text)</code>
+    </div>
+
+    <!-- Git/GitHub -->
+    <div class="comandos">
+        <h3>Comandos Git/GitHub:</h3>
+        <code>git init</code>
+        <code>git add .</code>
+        <code>git commit -m "mensagem"</code>
+        <code>git branch -M main</code>
+        <code>git remote add origin URL</code>
+        <code>git push -u origin main</code>
+        <code>git pull</code>
+        <code>git status</code>
+    </div>
+
+    <!-- Kali Linux / Pentest -->
+    <div class="comandos">
+        <h3>Comandos Kali Linux / Pentest:</h3>
+        <code>nmap -sV -A 192.168.0.1</code>
+        <code>sqlmap -u "http://site.com?id=1" --dbs</code>
+        <code>hydra -l admin -P senhas.txt 192.168.0.10 ssh</code>
+        <code>wpscan --url sitewordpress.com</code>
+        <code>dirb http://site.com</code>
+    </div>
+
+    <!-- Metasploit / Wireshark -->
+    <div class="comandos">
+        <h3>Metasploit / Wireshark:</h3>
+        <code>msfconsole</code>
+        <code>search exploit/windows/smb</code>
+        <code>use exploit/windows/smb/ms17_010_eternalblue</code>
+        <code>set RHOST 192.168.0.10</code>
+        <code>exploit</code>
+        <code>wireshark</code>
+        <code>tshark -i wlan0</code>
     </div>
 
     <!-- Java -->
@@ -178,6 +207,42 @@ int main(){ cout &lt;&lt; "Olá Mundo"; return 0; }</code>
         <code>INSERT INTO usuarios(nome) VALUES ('Lucas');</code>
         <code>UPDATE usuarios SET senha='123' WHERE id=1;</code>
     </div>
+
+    <!-- Segurança em redes -->
+    <div class="comandos">
+        <h3>Como funciona (em teoria): Desconectar dispositivos da rede</h3>
+        <p>
+Existem duas formas comuns para remover dispositivos de uma rede local sem acessar o roteador:
+        </p>
+        <p><b>1. Ataque de desautenticação (Wi‑Fi – “deauth”)</b><br>
+        Ferramentas como <code>aireplay-ng</code> enviam pacotes falsos de “desconectar” para um dispositivo.<br>
+        <u>Resultado:</u> o aparelho é derrubado da rede e precisa reconectar.<br>
+        Precisa de modo monitor (placa Wi‑Fi compatível, geralmente em um PC Linux).
+        </p>
+        <p><b>2. Spoofing de ARP (rede cabeada ou Wi‑Fi)</b><br>
+        Ferramentas como <code>arpspoof</code> ou <code>ettercap</code> enganam o dispositivo fazendo ele achar que você é o roteador.<br>
+        Isso corta a conexão dele (ou te coloca no meio da comunicação).<br>
+        Funciona mesmo sem acesso ao roteador, mas só dentro da mesma rede.
+        </p>
+        <p>Essas técnicas são usadas em pentest, <b>nunca contra terceiros.</b></p>
+        <hr>
+        <h4>Limitações em celular / Termux</h4>
+        <ul>
+            <li><b>Android sem root:</b> não dá para fazer nem deauth nem spoofing.</li>
+            <li><b>Com root:</b> dá para instalar ferramentas, mas quase sempre precisa de driver compatível ou PC.</li>
+        </ul>
+        <h4>Como aprender isso de forma segura</h4>
+        <ol>
+            <li>Monte um laboratório:<br>
+                Kali Linux em PC (ou máquina virtual)<br>
+                Placa Wi-Fi compatível com modo monitor
+            </li>
+            <li>Ferramentas para testar:<br>
+                <code>aireplay-ng</code> (deauth)<br>
+                <code>bettercap</code> ou <code>arpspoof</code> (ataque ARP)
+            </li>
+        </ol>
+    </div>
 </div>
 
 <script>
@@ -206,7 +271,7 @@ function draw() {
 }
 setInterval(draw, 80);
 
-/* Texto */
+/* Texto digitado */
 const texto = `Olá Mundo! (eu sou 369dark)
 Meu nome é Lucas e tenho 12 anos.
 Estudo HTML, Python, Termux, Java, C++ e JavaScript.
