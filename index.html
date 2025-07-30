@@ -10,8 +10,9 @@
         padding: 0;
         font-family: monospace;
         background: black;
-        overflow-x: hidden;
         color: #00ff00;
+        overflow-y: auto; /* permite rolar */
+        overflow-x: hidden;
     }
 
     canvas {
@@ -21,7 +22,6 @@
         width: 100%;
         height: 100%;
         z-index: -1;
-        background: black;
     }
 
     .container {
@@ -36,12 +36,14 @@
     h1 {
         text-align: center;
         font-size: 2em;
-        color: red; /* agora Fire Ex fica vermelho */
+        color: red; /* Fire Ex em vermelho */
     }
 
     h2 {
         color: yellow;
     }
+
+    h3 { color: #ffcc00; }
 
     .comandos {
         background: rgba(0,0,0,0.7);
@@ -54,6 +56,7 @@
         color: #33ccff;
         display: block;
         margin-bottom: 8px;
+        white-space: pre-wrap;
     }
 
     #textoDigitado {
@@ -70,8 +73,9 @@
         font-size: 1em;
     }
 
+    /* Botão */
     #ativarBtn {
-        position: absolute;
+        position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -89,39 +93,103 @@
 </style>
 </head>
 <body>
-    <canvas id="matrix"></canvas>
+<canvas id="matrix"></canvas>
 
-    <button id="ativarBtn">Ativar Modo Hacker</button>
+<button id="ativarBtn">Ativar Modo Hacker</button>
 
-    <div class="container" id="conteudo">
-        <h1>💻 Fire Ex 💻</h1>
-        <div id="textoDigitado"></div>
-        <div id="textoCompleto"></div>
+<div class="container" id="conteudo">
+    <h1>💻 Fire Ex 💻</h1>
+    <div id="textoDigitado"></div>
+    <div id="textoCompleto"></div>
 
-        <h2>Grupo Hacker (não cracker)</h2>
+    <h2>Grupo Hacker (não cracker)</h2>
 
-        <div class="comandos">
-            <h3>Comandos Termux:</h3>
-            <code>pkg update && pkg upgrade</code> Atualiza pacotes<br>
-            <code>pkg install python</code> Instala Python<br>
-            <code>pkg install git</code> Instala Git<br>
-            <code>pkg install nmap</code> Scanner de rede<br>
-            <code>pkg install nano</code> Editor de texto<br>
-            <code>pkg install curl</code> Testa sites<br>
-        </div>
+    <!-- Termux -->
+    <div class="comandos">
+        <h3>Comandos Termux:</h3>
+        <code>pkg update && pkg upgrade</code>
+        <code>pkg install python</code>
+        <code>pkg install git</code>
+        <code>pkg install nmap</code>
+        <code>pkg install nano</code>
+        <code>pkg install curl</code>
+        <code>pkg install nodejs</code>
+        <code>pkg install openjdk-17</code>
+        <code>pkg install clang</code>
+        <code>pkg install php</code>
+        <code>pkg install sqlmap</code>
+        <code>ls</code>
+        <code>cd nome_da_pasta</code>
+        <code>mkdir projetos</code>
+        <code>git clone URL</code>
+        <code>python script.py</code>
+        <code>bash arquivo.sh</code>
     </div>
 
+    <!-- Python -->
+    <div class="comandos">
+        <h3>Comandos Python:</h3>
+        <code>print("Olá mundo")</code>
+        <code>for i in range(5): print(i)</code>
+        <code>if 10 > 5: print("maior")</code>
+        <code>def soma(a,b): return a+b</code>
+        <code>import os; os.system('ls')</code>
+        <code>import requests; print(requests.get('https://example.com').text)</code>
+    </div>
+
+    <!-- Java -->
+    <div class="comandos">
+        <h3>Comandos Java:</h3>
+        <code>public class Main { public static void main(String[] args){ System.out.println("Olá Mundo"); }}</code>
+        <code>javac Main.java</code>
+        <code>java Main</code>
+    </div>
+
+    <!-- C++ -->
+    <div class="comandos">
+        <h3>Comandos C++:</h3>
+        <code>#include &lt;iostream&gt;
+using namespace std;
+int main(){ cout &lt;&lt; "Olá Mundo"; return 0; }</code>
+        <code>g++ main.cpp -o app</code>
+        <code>./app</code>
+    </div>
+
+    <!-- JavaScript -->
+    <div class="comandos">
+        <h3>Comandos JavaScript:</h3>
+        <code>console.log("Olá Mundo")</code>
+        <code>alert("Aviso!")</code>
+        <code>document.body.style.background = "black"</code>
+    </div>
+
+    <!-- HTML / CSS -->
+    <div class="comandos">
+        <h3>Comandos HTML/CSS:</h3>
+        <code>&lt;h1&gt;Título&lt;/h1&gt;</code>
+        <code>&lt;p&gt;Parágrafo&lt;/p&gt;</code>
+        <code>body { background:black; color:green; }</code>
+    </div>
+
+    <!-- SQL -->
+    <div class="comandos">
+        <h3>Comandos SQL:</h3>
+        <code>SELECT * FROM usuarios;</code>
+        <code>INSERT INTO usuarios(nome) VALUES ('Lucas');</code>
+        <code>UPDATE usuarios SET senha='123' WHERE id=1;</code>
+    </div>
+</div>
+
 <script>
+/* Matrix */
 const canvas = document.getElementById("matrix");
 const ctx = canvas.getContext("2d");
 canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
-
 const letters = "01";
-const fontSize = 20; 
+const fontSize = 20;
 const columns = canvas.width / fontSize;
 const drops = Array(Math.floor(columns)).fill(1);
-
 let animacaoAtiva = false;
 function draw() {
     if (!animacaoAtiva) return;
@@ -132,14 +200,13 @@ function draw() {
     for (let i = 0; i < drops.length; i++) {
         const text = letters.charAt(Math.floor(Math.random() * letters.length));
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.98) {
-            drops[i] = 0;
-        }
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.98) drops[i] = 0;
         drops[i]++;
     }
 }
 setInterval(draw, 80);
 
+/* Texto */
 const texto = `Olá Mundo! (eu sou 369dark)
 Meu nome é Lucas e tenho 12 anos.
 Estudo HTML, Python, Termux, Java, C++ e JavaScript.
@@ -152,7 +219,7 @@ function digitar() {
     if (i < texto.length) {
         document.getElementById("textoDigitado").innerHTML += texto.charAt(i);
         i++;
-        setTimeout(digitar, 50);
+        setTimeout(digitar, 40);
     } else {
         document.getElementById("textoCompleto").innerText = texto;
     }
