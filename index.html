@@ -17,7 +17,7 @@
         background-size: 20px 20px;
     }
     .container {
-        max-width: 800px;
+        max-width: 900px;
         margin: 0 auto;
         padding: 20px;
     }
@@ -37,7 +37,7 @@
     code {
         color: #0ff;
         display: block;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
     }
 </style>
 </head>
@@ -54,19 +54,31 @@
 
         <div class="comandos">
             <h3>Comandos Termux:</h3>
-            <code>pkg update && pkg upgrade</code> Atualiza todos os pacotes<br>
-            <code>pkg install python</code> Instala o Python<br>
-            <code>ls</code> Lista arquivos e pastas<br>
+            <code>pkg update && pkg upgrade</code> Atualiza pacotes<br>
+            <code>pkg install python</code> Instala Python<br>
+            <code>pkg install git</code> Instala Git<br>
+            <code>pkg install nmap</code> Instala Nmap (scanner de rede)<br>
+            <code>pkg install nano</code> Instala editor de texto nano<br>
+            <code>pkg install curl</code> Faz requisições web<br>
+            <code>ls</code> Lista arquivos<br>
             <code>cd nome_da_pasta</code> Entra em uma pasta<br>
-            <code>python arquivo.py</code> Roda um script Python
+            <code>mkdir projetos</code> Cria uma nova pasta<br>
+            <code>git clone URL</code> Baixa um repositório do GitHub<br>
+            <code>python arquivo.py</code> Executa um script Python<br>
         </div>
 
         <div class="comandos">
             <h3>Comandos Python:</h3>
-            <code>print("Olá mundo")</code> Mostra uma mensagem na tela<br>
-            <code>for i in range(5): print(i)</code> Conta de 0 até 4<br>
-            <code>nome = input("Qual seu nome? ")</code> Pede seu nome no terminal<br>
-            <code>if 5 > 2: print("5 é maior que 2")</code> Condição simples<br>
+            <code>print("Olá mundo")</code> Mostra uma mensagem<br>
+            <code>for i in range(5): print(i)</code> Conta de 0 a 4<br>
+            <code>nome = input("Qual seu nome? ")</code> Entrada do usuário<br>
+            <code>if 5 > 2: print("5 é maior que 2")</code> Condição<br>
+            <code>def soma(a, b): return a + b</code> Função que soma números<br>
+            <code>import math</code> Importa funções matemáticas<br>
+            <code>print(math.sqrt(16))</code> Raiz quadrada de 16<br>
+            <code>lista = ["html", "python", "js"]</code> Cria uma lista<br>
+            <code>for item in lista: print(item)</code> Mostra itens da lista<br>
+            <code>while True: print("loop infinito")</code> Loop infinito<br>
         </div>
     </div>
 </body>
